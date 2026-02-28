@@ -4,6 +4,7 @@ const QueueController = require('./controllers/QueueController');
 
 const app = express();
 app.use(express.json()); // Para poder recibir JSON en el body
+app.use(express.static('public')); // Servir archivos estáticos (HTML, CSS, JS)
 
 // Rutas de Backlog (Lista Enlazada)
 app.post('/backlog/tasks', TaskController.create);
