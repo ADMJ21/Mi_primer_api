@@ -1,25 +1,27 @@
 const QueueRepository = require('../repositories/QueueRepository');
 const Task = require('../models/Task');
 
-class QueueRepository {
-    createTask(title) {
-        if (!title) throw new Error("El título es requerido");
+class QueueService {
+    addToQueue(title) {
+        if (!title) throw new Error("El título de la tarea es requerido");
         const newTask = new Task(title);
-        // Aquí podrías, por ejemplo, llamar también al "UndoService" para registrar la acción
-        return QueueRepository.addTask(newTask);
+        return QueueRepository.enqueue(newTask);
     }
 
-    getAll() {
-        return QueueRepository.getAllTasks();
+    processNext() {
+        if (QueueRepository.isEmpty()) {
+            throw new Error("La cola está vacía, no hay tareas por procesar");
+        }
+        return QueueRepository.dequeue();
     }
 
-    getById(id) {
-        return QueueRepository.getTaskById(id);
+    getQueueStatus() {
+        return QueueRepository.getAll();
     }
 
-    deleteTask(id) {
-        return QueueRepository.deleteTask(id);
+    peekNext() {
+        return QueueRepository.peek();
     }
 }
 
-module.exports = new QueueRepository();
+module.exports = new QueueService();

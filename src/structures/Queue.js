@@ -37,6 +37,20 @@ class Queue {
     peek() {
         return this.head ? this.head.data : null;
     }
+
+    isEmpty() {
+        return this.head === null;
+    }
+
+    toArray() {
+        const elements = [];
+        let current = this.head;
+        while (current) {
+            elements.push(current.data);
+            current = current.next;
+        }
+        return elements;
+    }
 }
 
 module.exports = Queue;

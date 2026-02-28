@@ -1,13 +1,29 @@
-const LinkedList = require('../structures/LinkedList');
+const Queue = require('../structures/Queue');
 
 // Instancia única en memoria
-const backlog = new LinkedList();
+const processingQueue = new Queue();
 
 class QueueRepository {
-    addTask(task) { return backlog.addLast(task); }
-    getAllTasks() { return backlog.getAll(); }
-    getTaskById(id) { return backlog.findById(id); }
-    deleteTask(id) { return backlog.removeById(id); }
+    enqueue(task) {
+        processingQueue.enqueue(task);
+        return task;
+    }
+
+    dequeue() {
+        return processingQueue.dequeue();
+    }
+
+    peek() {
+        return processingQueue.peek();
+    }
+
+    getAll() {
+        return processingQueue.toArray();
+    }
+
+    isEmpty() {
+        return processingQueue.isEmpty();
+    }
 }
 
 module.exports = new QueueRepository();
