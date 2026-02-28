@@ -1,0 +1,17 @@
+# Dependencias
+node_modules/
+src/node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor/Sistema
+.DS_Store
+.vscode/
+*.swp
+*.swo
+
+# Seguridad
+.env
+.env.*
